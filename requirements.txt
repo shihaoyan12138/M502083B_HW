@@ -1,0 +1,6 @@
+sentence-transformers
+torch
+transformers
+chromadb
+pymupdf
+tqdm
