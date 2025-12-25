@@ -32,7 +32,7 @@
 本项目实现一个**本地化部署的多模态 AI 助手**，用于对本地论文（PDF）与图像进行：
 
 - **语义检索**：用自然语言检索最相关文件，而非仅文件名匹配  
-- **自动分类**：支持单篇添加分类与 `unknown/` 的批量整理  
+- **自动分类**：支持单篇添加分类与 `unknown` 的批量整理  
 - **以文搜图**：通过文字描述在本地图片库中检索最匹配图片  
 
 本项目所有核心功能均可通过命令行调用，便于评测与复现。
@@ -50,7 +50,7 @@
 **实现要点：**
 1. 检索数据库中所有已加入知识库的论文向量。
 2. 返回 **Top-3** 最相关论文文件名。
-3. 创新设计：使用 **Temperature Softmax** 将 Top-3 相关度转为**相对百分比（和为 100%）**，并可控制第一名更突出、第二/第三更接近。
+3. 创新设计：使用 **Temperature Softmax** 将 Top-3 相关度转为**相对百分比（和为 100%）**。
 4. 鲁棒性设计：当数据库为空或无结果时给出清晰提示。
 
 **示例：**  
@@ -61,8 +61,6 @@ python main.py search_paper "What is the core idea of transformer architecture?"
 ```
 
 ![图1](screen_shots/1.png)
-
-> 若你的截图不是 `.png`（例如 `.jpg`），请将图片重命名为 `1.png`~`6.png`，或同步修改 README 中的后缀。
 
 ---
 
@@ -141,7 +139,7 @@ python main.py search_paper "attention"
 python main.py search_image "man"
 ```
 
-> 图6：查询 `man`，系统返回最相关的 Top-3 图片，其中 `jzx.jpg`（示例）相关度最高。
+> 图6：查询 `man`，系统返回最相关的 Top-3 图片，其中 `jzx.jpg`相关度最高。
 
 ![图6](screen_shots/6.png)
 
@@ -244,7 +242,7 @@ agent/
 ### 6.1 添加论文（入库 + 归档）
 
 ```bash
-python main.py add_paper path/to/paper.pdf --topics "NLP,CV"
+python main.py add_paper DQN.pdf --topics "RL"
 ```
 
 - `--topics`：逗号分隔，多标签可同时指定  
